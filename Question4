@@ -1,13 +1,64 @@
  Write a function that stores the student number, name and age, traverses all the nodes in the list, writes all the student information on the screen and counts it.
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Structure to represent a student
+struct Student {
+    int studentNumber;
+    char name[50];
+    int age;
+    struct Student* next;
+};
+
+// Function to add a student to the list
+void addStudent(struct Student** head, int studentNumber, const char name[], int age) {
+    struct Student* newStudent = (struct Student*)malloc(sizeof(struct Student));
+    newStudent->studentNumber = studentNumber;
+    strncpy(newStudent->name, name, sizeof(newStudent->name));
+    newStudent->age = age;
+    newStudent->next = *head;
+    *head = newStudent;
+}
+
 // Function to print student information and count students
 void printStudents(struct Student* head) {
     int count = 0;
     printf("Student Information:\n");
     while (head != NULL) {
         count++;
-        printf("%d- %s %d %d\n", head->studentNumber, head->name, head->age, head->studentNumber + 200);
+        printf("%d- %s %d %d\n", count, head->name, head->age, head->studentNumber + 200);
         head = head->next;
     }
     printf("Total students: %d\n", count);
+}
+
+int main() {
+    struct Student* studentList = NULL;
+
+    printf("Enter student information (student number, name, age) or -1 to stop:\n");
+    int studentNumber, age;
+    char name[50];
+
+    while (1) {
+        scanf("%d", &studentNumber);
+        if (studentNumber == -1) {
+            break;
+        }
+        scanf("%s %d", name, &age);
+        addStudent(&studentList, studentNumber, name, age);
+    }
+
+    // Call the function to print and count students
+    printStudents(studentList);
+
+    // Clean up memory
+    while (studentList != NULL) {
+        struct Student* temp = studentList;
+        studentList = studentList->next;
+        free(temp);
+    }
+
+    return 0;
 }
