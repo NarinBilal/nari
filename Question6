@@ -1,0 +1,15 @@
+Write the function that deletes the next node from the node with the searched student name in the list.
+
+// Function to delete the next node after the node with the searched student name
+void deleteNextStudentByName(struct Student* head, const char name[]) {
+    struct Student* current = head;
+    while (current != NULL) {
+        if (strcmp(current->name, name) == 0 && current->next != NULL) {
+            struct Student* nextStudent = current->next;
+            current->next = nextStudent->next;
+            free(nextStudent);
+            break;
+        }
+        current = current->next;
+    }
+}
