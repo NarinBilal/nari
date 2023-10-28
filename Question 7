@@ -1,0 +1,25 @@
+Write the function that prints the record with the longest name in the list.
+Output : the longest name in the list: Abdurrahmangazi
+Length : 15
+// Function to print the record with the longest name in the list
+void printLongestName(struct Student* head) {
+    if (head == NULL) {
+        printf("No records in the list.\n");
+        return;
+    }
+
+    struct Student* longestNameStudent = head;
+    int maxLength = strlen(head->name);
+
+    while (head != NULL) {
+        int currentLength = strlen(head->name);
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+            longestNameStudent = head;
+        }
+        head = head->next;
+    }
+
+    printf("The longest name in the list: %s\n", longestNameStudent->name);
+    printf("Length: %d\n", maxLength);
+}
