@@ -1,0 +1,12 @@
+Write the function that searches records by student name in the list.
+
+// Function to search for a student by name
+struct Student* searchStudentByName(struct Student* head, const char name[]) {
+    while (head != NULL) {
+        if (strcmp(head->name, name) == 0) {
+            return head;
+        }
+        head = head->next;
+    }
+    return NULL;
+}
