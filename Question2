@@ -1,0 +1,51 @@
+2- Add 100 randomly generated numbers to the list, write the c code that sorts all the numbers entered from largest to smallest and prints them on the screen.
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void generateRandomNumbers(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 1000; // Generate random numbers between 0 and 999
+    }
+}
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
+                // Swap arr[j] and arr[j+1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    srand(time(NULL); // Seed the random number generator with the current time
+
+    int numbers[100];
+    int n = 100; // Number of elements in the list
+
+    generateRandomNumbers(numbers, n); // Generate random numbers
+
+    printf("Unsorted list:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    bubbleSort(numbers, n); // Sort the list in descending order
+
+    printf("Sorted list (largest to smallest):\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
