@@ -1,0 +1,39 @@
+ 1- Write a function that adds all odd numbers to the beginning of the list and all even numbers to the end of the list until -1 is entered from the keyboard.
+
+
+
+#include <stdio.h>
+
+int main() {
+    int numbers[100];  // Assuming a maximum of 100 numbers, you can change this value
+    int num, i, oddIndex = 0, evenIndex = 99;  // Initialize indexes for odd and even numbers
+
+    printf("Enter numbers (-1 to stop):\n");
+
+    while (1) {
+        scanf("%d", &num);
+        
+        if (num == -1) {
+            break;
+        }
+        
+        if (num % 2 == 0) {  // Even number
+            numbers[evenIndex] = num;
+            evenIndex--;
+        } else {  // Odd number
+            for (i = oddIndex; i < 99; i++) {
+                numbers[i] = numbers[i + 1];  // Shift all odd numbers to the right
+            }
+            numbers[oddIndex] = num;
+            oddIndex++;
+        }
+    }
+
+    printf("Final list: ");
+    for (i = oddIndex; i <= 99 - evenIndex; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
