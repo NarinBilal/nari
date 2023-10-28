@@ -1,0 +1,13 @@
+ Write a function that stores the student number, name and age, traverses all the nodes in the list, writes all the student information on the screen and counts it.
+
+// Function to print student information and count students
+void printStudents(struct Student* head) {
+    int count = 0;
+    printf("Student Information:\n");
+    while (head != NULL) {
+        count++;
+        printf("%d- %s %d %d\n", head->studentNumber, head->name, head->age, head->studentNumber + 200);
+        head = head->next;
+    }
+    printf("Total students: %d\n", count);
+}
